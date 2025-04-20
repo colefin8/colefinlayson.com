@@ -1,21 +1,31 @@
-let links = []
-
-async function getLinks() {
-    const url = `http://localhost:3000`
-    try {
-        const response = await fetch(url + '/links?query=yes', {
-            method: 'GET'
-        })
-        if (!response.ok) {
-            throw new Error(`Error: response status ${response.status}`)
-        }
-
-        const json = await response.json();
-        populateLinks(json) 
-    } catch (error) {
-        console.error(error.message)
+const links = {
+    'AI': {
+        'Digital Tar Pits': 'https://www.youtube.com/watch?v=vC2mlCtuJiU&pp=ygUMa3lsZSBoaWxsIGFp',
+        'Tracing the Thoughts of a Large Language Model': 'https://www.anthropic.com/news/tracing-thoughts-language-model',
+    },
+    'MTG': {
+        'Scryfall': 'https://www.scryfall.com',
+        'Archidekt': 'https://archidekt.com/folders/655752',
+        'EDHRec': 'https://edhrec.com/',
     }
 }
+
+// async function getLinks() {
+//     const url = `http://localhost:3000`
+//     try {
+//         const response = await fetch(url + '/links?query=yes', {
+//             method: 'GET'
+//         })
+//         if (!response.ok) {
+//             throw new Error(`Error: response status ${response.status}`)
+//         }
+
+//         const json = await response.json();
+//         populateLinks(json) 
+//     } catch (error) {
+//         console.error(error.message)
+//     }
+// }
 
 function populateLinks(links) {
     const linksDiv = document.getElementById('links')
