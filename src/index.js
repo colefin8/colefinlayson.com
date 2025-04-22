@@ -10,6 +10,10 @@ const links = {
     }
 }
 
+function getLinks() {
+    populateLinks(links)
+}
+
 // async function getLinks() {
 //     const url = `http://localhost:3000`
 //     try {
