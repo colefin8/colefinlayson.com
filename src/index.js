@@ -14,6 +14,9 @@ const links = {
         'YouTube': 'https://youtube.com',
         'Gmail': 'https://mail.google.com/mail/u/0/#inbox',
         'Netlify': 'https://app.netlify.com/teams/colefin8/sites',
+    },
+    'Cool Shit': {
+        'Fast Inverse Square Root - Quake III': 'https://www.youtube.com/watch?v=p8u_k2LIZyo',
     }
 }
 
