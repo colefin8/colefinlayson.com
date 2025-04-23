@@ -1,0 +1,14 @@
+services:
+  server:
+    restart: on-failure
+    build: 
+      context: ./server
+    hostname: server
+    ports:
+      - '81:3000'
+  nginx:
+    build: ./nginx
+    ports:
+      - '80:80'
+    depends_on:
+      - server
