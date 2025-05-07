@@ -1,8 +1,8 @@
 import http from 'http'
 import url from 'url'
-import fs from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
+
+
+import { routeHandler } from './controllers/routes.mjs'
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename)
@@ -30,6 +30,8 @@ const links = {
 }
 
 const server = http.createServer((req, res) => {
+    const reqUrl = url.parse(req.url, true)
+    const pathname = reqUrl.pathname;
     const headers = {
         'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
         'Access-Control-Max-Age': 2592000, // 30 days
@@ -41,27 +43,18 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    if (['GET', 'POST'].indexOf(req.method) > -1) {
+    if (['GET', 'POST'].includes(req.method)) {
         console.log(req.url)
-        switch (url.parse(req.url, true).pathname) {
-            case '/home':
-            case '/':
-                res.writeHead(200, headers);
-                fs.createReadStream('./pages/index.html').pipe(res)
-                return;
-            case '/links':
-                res.writeHead(200, headers);
-                res.end(JSON.stringify(links))
-            default:
-                return;
-        }
+        req.url = pathname
+        routeHandler(req, res, headers)
+    } else {
+        res.writeHead(405, headers);
+        res.end(`${req.method} is not allowed for the request.`);
     }
 
-    res.writeHead(405, headers);
-    res.end(`${req.method} is not allowed for the request.`);
 
 })
 
 server.listen(3000, () => {
-    console.log(`server running on ${3000}`)
+    console.log(`server running on port 3000`)
 })
