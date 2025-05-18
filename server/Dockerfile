@@ -1,4 +1,4 @@
-FROM node:23-slim
+FROM node:23-bullseye-slim
 
 COPY package.json package-lock.json ./
 COPY ./pages ./pages

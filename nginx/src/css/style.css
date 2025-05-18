@@ -23,22 +23,3 @@ h3 {
 .link-li {
     margin: 2px 0 2px 0;
 }
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000;
-        color: #fff;
-    }
-
-    a {
-        color: #3399FF;
-    }
-
-    a:visited {
-        color: #B47EE7;
-    }
-
-    a:active a:visited:active {
-        color: #FF6161;
-    }
-}
